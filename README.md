@@ -37,7 +37,7 @@ Please do not hesitate to contact the authors if you have any further questions.
 ## 1. Prerequisites and dependencies
 
 ### OpenCV 3.x.x
-It can be easily found at http://opencv.org. 
+It can be easily found at http://opencv.org.
 
 ### Eigen3 (tested with 3.2.92)
 http://eigen.tuxfamily.org
@@ -61,20 +61,17 @@ sudo apt-get install libyaml-cpp-dev
 ```
 
 ### stvo-pl
-It can be found at: 
+It can be found at:
 ```
 https://github.com/rubengooj/stvo-pl
 ```
 
-### MRPT
-In case of using the provided representation class. 
-Download and install instructions can be found at: http://www.mrpt.org/
-
-#### Known Issues:
-If working with the most recent versions of the MRPT library you might find some issues due to hard refactoring, for which we recommend to use this version instead (the last one we tested):
-```
-https://github.com/MRPT/mrpt/tree/0c3d605c3cbf5f2ffb8137089e43ebdae5a55de3
-```
+### MRPT (>=v1.9.9)
+In case of using the provided representation class.
+Download and install instructions can be found at: https://www.mrpt.org/
+Either:
+- (recommended) Install [from this PPA](https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt).
+- or build [from sources](https://github.com/mrpt/mrpt/).
 
 ### Line Descriptor
 We have modified the [*line_descriptor*](https://github.com/opencv/opencv_contrib/tree/master/modules/line_descriptor) module from the [OpenCV/contrib](https://github.com/opencv/opencv_contrib) library (both BSD) which is included in the *3rdparty* folder.
@@ -106,4 +103,3 @@ A full command would be:
 ./plslam_dataset kitti/00 -c ../config/config_kitti.yaml -o 100 -s 2 -n 1000
 
 where we are processing the sequence 00 from the KITTI dataset (in our dataset folders) with the custom config file, with an offset *-c* allowing to skip the first 100 images, a parameter *-s* to consider only one every 2 images, and a parameter *-n* to only consider 1000 input pairs.
-
