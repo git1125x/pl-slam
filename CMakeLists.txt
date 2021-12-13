@@ -6,19 +6,21 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_modules")
 add_subdirectory(3rdparty/line_descriptor)
 add_subdirectory(3rdparty/DBoW2)
 
-set(HAS_MRPT ON CACHE BOOL "Build the PointGrey Bumblebee2 SVO application that employs the MRPT library")
+#set(HAS_MRPT ON CACHE BOOL "Build the PointGrey Bumblebee2 SVO application that employs the MRPT library") #TODO: MRPT zum laufen bringen
 
 find_package(OpenCV 3 REQUIRED)
 find_package(Boost    REQUIRED COMPONENTS regex thread system filesystem)
-find_package(g2o      REQUIRED)
+set(CMAKE_MODULE_PATH "/home/alex/g2o/cmake_modules/;${CMAKE_MODULE_PATH}")
+find_package(G2O      REQUIRED)
 find_package(Eigen3   REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 find_package(yaml-cpp REQUIRED CONFIG PATHS ${YAML_PATHS}) # YAML library
 
 # MRPT library (optional, only with representation purposes)
-if(HAS_MRPT)
-    find_package(MRPT 1.9.9 REQUIRED opengl gui hwdrivers)
-    add_definitions(-DHAS_MRPT)
-endif()
+#if(HAS_MRPT)
+#    find_package(MRPT 1.9.9 REQUIRED opengl gui hwdrivers)
+#    add_definitions(-DHAS_MRPT)
+#endif()
 
 if(COMMAND cmake_policy)
   	cmake_policy(SET CMP0003 NEW)	
@@ -82,11 +84,11 @@ list(APPEND SOURCEFILES
 )
 
 # Set source files 
-if(HAS_MRPT)
-    list(APPEND SOURCEFILES
-        src/slamScene.cpp
-    )
-endif()
+#if(HAS_MRPT)
+#    list(APPEND SOURCEFILES
+#        src/slamScene.cpp
+#    )
+#endif()
 
 # List all files (headers) contained by StVO-PL library
 file(GLOB_RECURSE all_include_files RELATIVE "${CMAKE_SOURCE_DIR}" *.h *.hpp)
@@ -99,15 +101,15 @@ add_library(plslam SHARED ${SOURCEFILES})
 
 target_link_libraries(plslam ${LINK_LIBS})
 
-if(HAS_MRPT)
-    target_link_libraries(plslam ${MRPT_LIBS} ${MRPT_LIBRARIES})
-endif()
+#if(HAS_MRPT)
+#    target_link_libraries(plslam ${MRPT_LIBS} ${MRPT_LIBRARIES})
+#endif()
 
 # Applications 
-if(HAS_MRPT)
-    add_executable       ( plslam_dataset app/plslam_dataset.cpp )
-    target_link_libraries( plslam_dataset plslam )
-endif()
+#if(HAS_MRPT)
+#    add_executable       ( plslam_dataset app/plslam_dataset.cpp )
+#    target_link_libraries( plslam_dataset plslam )
+#endif()
 
 
 
