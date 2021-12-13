@@ -43,10 +43,14 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 SET(G2O_LIBS
-    g2o::core
-    g2o::types_slam2d
-    g2o::types_slam3d
-    g2o::solver_cholmod
+    #g2o::core
+    #g2o::types_slam2d
+    #g2o::types_slam3d
+    #g2o::solver_cholmod
+    /usr/local/lib/libg2o_core.so
+    /usr/local/lib/libg2o_types_slam2d.so
+    /usr/local/lib/libg2o_types_slam3d.so
+    /usr/local/lib/libg2o_solver_cholmod.so    
     )
 
 # Include dirs
