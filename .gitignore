@@ -3,8 +3,11 @@ build
 3rdparty/DBoW2/lib/*
 3rdparty/line_descriptor/lib/*
 lib/*
-
+vocabulary/*
 
 # for qtcreator IDE
 CMakeLists.txt.user*
+
+# for VSCode
+.vscode
 
